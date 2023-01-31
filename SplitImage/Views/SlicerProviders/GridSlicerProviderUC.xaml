@@ -1,0 +1,51 @@
+﻿<UserControl x:Class="SplitImage.Views.SlicerProviders.GridSlicerProviderUC"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SplitImage.Views.SlicerProviders"
+             xmlns:vm="clr-namespace:SplitImage.ViewModels.SlicerProviders"
+             mc:Ignorable="d" 
+             d:DesignHeight="140" d:DesignWidth="350">
+    <UserControl.DataContext>
+        <vm:GridSlicerProviderVM></vm:GridSlicerProviderVM>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel>
+                    <TextBlock Width="60">Rows</TextBlock>
+                    <TextBlock Width="60">(max 100)</TextBlock>
+                </StackPanel>
+                <TextBox x:Name="Rows" Text="{Binding Rows, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         Width="40" FontSize="14" Padding="3, 5"
+                         PreviewTextInput="Rows_PreviewTextInput"></TextBox>
+                <StackPanel>
+                    <Button x:Name="RowUp" FontSize="10" FontWeight="Bold" Command="{Binding RowUp}">UP</Button>
+                    <Button x:Name="RowDown" FontSize="10" FontWeight="Bold" Command="{Binding RowDown}">DN</Button>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <StackPanel>
+                    <TextBlock Width="60">Columns</TextBlock>
+                    <TextBlock Width="60">(max 100)</TextBlock>
+                </StackPanel>
+                <TextBox x:Name="Columns" Text="{Binding Columns, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                         Width="40" FontSize="14" Padding="3, 5"
+                         PreviewTextInput="Columns_PreviewTextInput"
+                         ></TextBox>
+                <StackPanel>
+                    <Button x:Name="ColumnUp" FontSize="10" FontWeight="Bold" Command="{Binding ColumnUp}">UP</Button>
+                    <Button x:Name="ColumnDown" FontSize="10" FontWeight="Bold" Command="{Binding ColumnDown}">DN</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+        <Grid Grid.Column="1" Width="150" Height="100">
+            <ContentPresenter Content="{Binding VisualExample}"></ContentPresenter>
+        </Grid>
+    </Grid>
+</UserControl>
